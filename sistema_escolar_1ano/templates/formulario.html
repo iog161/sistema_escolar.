@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<h2>{{ 'Editar' if registro else 'Cadastrar' }} — {{ config.titulo }}</h2>
+<form class="formulario" method="POST" action="{{ url_for('atualizar', recurso=recurso, id_registro=registro[config.chave]) if registro else url_for('salvar', recurso=recurso) }}">
+    {% for campo in config.campos %}
+        <label for="{{ campo.nome }}">{{ campo.rotulo }}{% if campo.obrigatorio %} *{% endif %}</label>
+        {% if campo.tipo == 'select' %}
+            <select id="{{ campo.nome }}" name="{{ campo.nome }}" {% if campo.obrigatorio %}required{% endif %}>
+                {% for opcao in campo.opcoes %}
+                    <option value="{{ opcao }}" {% if registro and registro[campo.nome]|string == opcao|string %}selected{% elif not registro and campo.nome == 'ativo' and opcao == '1' %}selected{% endif %}>
+                        {% if campo.rotulos_opcoes is defined %}{{ campo.rotulos_opcoes[loop.index0] }}{% else %}{{ opcao }}{% endif %}
+                    </option>
+                {% endfor %}
+            </select>
+        {% elif campo.tipo == 'textarea' %}
+            <textarea id="{{ campo.nome }}" name="{{ campo.nome }}" {% if campo.obrigatorio %}required{% endif %}>{{ registro[campo.nome] if registro and registro[campo.nome] is not none else '' }}</textarea>
+        {% else %}
+            <input id="{{ campo.nome }}" name="{{ campo.nome }}" type="{{ campo.tipo }}" {% if campo.nome != 'senha' and registro and registro[campo.nome] is not none %}value="{{ registro[campo.nome] }}"{% endif %} {% if campo.obrigatorio and (not registro or campo.nome != 'senha') %}required{% endif %} {% if campo.nome == 'senha' and registro %}placeholder="Deixe vazio para manter a senha atual"{% endif %}>
+        {% endif %}
+    {% endfor %}
+    <button class="botao" type="submit">Salvar</button>
+    <a class="link-voltar" href="{{ url_for('listar', recurso=recurso) }}">Cancelar</a>
+</form>
+{% endblock %}

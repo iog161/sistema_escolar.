@@ -1,0 +1,35 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f2f4f7; color: #222; }
+header { background: #243b53; color: white; padding: 20px 5%; }
+header h1 { margin: 0 0 14px; }
+nav { display: flex; flex-wrap: wrap; gap: 16px; }
+nav a { color: white; text-decoration: none; }
+nav a:hover { text-decoration: underline; }
+main { width: 90%; max-width: 1200px; min-height: 65vh; margin: 24px auto; padding: 24px; background: white; border: 1px solid #d9e2ec; border-radius: 8px; }
+h2 { color: #243b53; }
+.cartoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-top: 22px; }
+.cartao { border: 1px solid #d9e2ec; border-radius: 8px; padding: 18px; background: #f8fafc; }
+.botao, button { display: inline-block; border: 0; border-radius: 5px; padding: 10px 14px; background: #176b87; color: white; text-decoration: none; cursor: pointer; font-size: 14px; }
+.botao:hover, button:hover { background: #12566d; }
+.tabela-responsiva { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin: 18px 0; }
+th, td { padding: 11px; border: 1px solid #d9e2ec; text-align: left; }
+th { background: #eaf2f8; color: #243b53; }
+tr:nth-child(even) { background: #f8fafc; }
+.acoes { white-space: nowrap; }
+.acoes form { display: inline; }
+.acoes a { margin-right: 10px; }
+.botao-excluir { background: #b42318; padding: 7px 10px; }
+.botao-excluir:hover { background: #8f1d15; }
+.formulario { max-width: 560px; }
+label { display: block; margin: 15px 0 6px; font-weight: bold; }
+input, select, textarea { width: 100%; padding: 10px; border: 1px solid #bcccdc; border-radius: 5px; font: inherit; }
+textarea { min-height: 90px; resize: vertical; }
+.formulario button { margin-top: 20px; }
+.link-voltar { margin-left: 12px; }
+.mensagem { padding: 12px; border-radius: 5px; }
+.mensagem.sucesso { background: #e6f6ec; color: #176b3a; }
+.mensagem.erro { background: #fff0f0; color: #9b1c1c; }
+.observacao { margin-top: 28px; color: #52606d; font-size: 14px; }
+footer { padding: 18px; text-align: center; color: #52606d; }
+@media (max-width: 600px) { main { width: 95%; padding: 15px; } header { padding: 18px 4%; } th, td { padding: 8px; } }

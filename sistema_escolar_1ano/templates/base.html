@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Escolar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Sistema Escolar</h1>
+        <nav>
+            <a href="{{ url_for('inicio') }}">Início</a>
+            <a href="{{ url_for('listar', recurso='usuarios') }}">Usuários</a>
+            <a href="{{ url_for('listar', recurso='permissoes') }}">Permissões</a>
+            <a href="{{ url_for('listar', recurso='disciplinas') }}">Disciplinas</a>
+            <a href="{{ url_for('listar', recurso='turmas') }}">Turmas</a>
+        </nav>
+    </header>
+    <main>
+        {% with mensagens = get_flashed_messages(with_categories=true) %}
+            {% for categoria, mensagem in mensagens %}
+                <p class="mensagem {{ categoria }}">{{ mensagem }}</p>
+            {% endfor %}
+        {% endwith %}
+        {% block conteudo %}{% endblock %}
+    </main>
+    <footer>Projeto escolar — Python, Flask e MySQL</footer>
+</body>
+</html>
