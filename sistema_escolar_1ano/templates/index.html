@@ -6,10 +6,8 @@
     {% for recurso, config in configs.items() %}
     <section class="cartao">
         <h3>{{ config.titulo }}</h3>
-        <p>Consultar, cadastrar, editar ou excluir registros.</p>
         <a class="botao" href="{{ url_for('listar', recurso=recurso) }}">Abrir cadastro</a>
     </section>
     {% endfor %}
 </div>
-<p class="observacao">Este projeto utiliza apenas as tabelas sem FK: usuarios, permissoes, disciplinas e turmas.</p>
 {% endblock %}
